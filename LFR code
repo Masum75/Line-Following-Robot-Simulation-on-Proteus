@@ -1,0 +1,87 @@
+int in1 = 4;
+int in2 = 3;
+int in3 = 2;
+int in4 = 1;
+int enA = 9;
+int enB = 10;
+int ir1 = A5;
+int ir2 = A4;
+int ir3 = A3;
+int sensor1;
+int sensor2;
+int sensor3;
+
+void setup() {
+  pinMode(4, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(1, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(A5, INPUT);
+  pinMode(A4, INPUT);
+  pinMode(A3, INPUT);
+
+}
+
+void loop() {
+sensor1 = digitalRead(ir1);
+sensor2 = digitalRead(ir2);
+sensor3 = digitalRead(ir3); 
+//reflect pele low; na pele high
+if(sensor1 == 0 && sensor2 == 1 && sensor3 == 0)//forward
+{
+  analogWrite(enA, 200);
+  analogWrite(enB, 200);
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
+}
+if(sensor1 == 1 && sensor2 == 1 && sensor3 == 1)//stop
+{
+  analogWrite(enA, 200);
+  analogWrite(enB, 200);
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, LOW);
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, LOW);
+}
+if(sensor1 == 1 && sensor2 == 1 && sensor3 == 0)//left
+{
+  analogWrite(enA, 200);
+  analogWrite(enB, 200);
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, HIGH);
+}
+if(sensor1 == 1 && sensor2 == 0 && sensor3 == 0)//left 30 degree angle
+{
+  analogWrite(enA, 200);
+  analogWrite(enB, 100);
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, HIGH);
+}
+if(sensor1 == 0 && sensor2 == 1 && sensor3 == 1)//right
+{
+  analogWrite(enA, 200);
+  analogWrite(enB, 200);
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, HIGH);
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
+}
+if(sensor1 == 0 && sensor2 == 0 && sensor3 == 1)//right at 30 degree angle
+{
+  analogWrite(enA, 100);
+  analogWrite(enB, 200);
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, HIGH);
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
+}
+
+}
